@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Script IT</title>
+	<link rel="stylesheet" href="style.css">
+	<!-- Bootstrap 5 CDN -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="titlebar">
+		<div class="d-flex align-items-center gap-2" >
+			
+			<div class="logo-block">
+  
+  <div class="logo-row">
+    
+    
+
+    <!-- 📝 Logo Text -->
+    <div class="logo-text">
+      <span class="logo-script">Script</span>
+      <span class="logo-it">IT</span>
+    </div>
+
+  </div>
+
+  <!-- 📌 Tagline -->
+  <div class="tagline">
+    Your notes to screenplay
+  </div>
+
+</div>		
+
+			<div class="dropdown">
+				<button class="btn btn-outline-light dropdown-toggle" type="button" id="templateSelector" data-bs-toggle="dropdown" aria-expanded="false">
+					Screenplay Template
+				</button>
+				<ul class="dropdown-menu" id="templateDropdown" aria-labelledby="templateSelector">
+					<li><a class="dropdown-item template-option" data-template="threeAct" href="#">3 Act Structure</a></li>
+					<li><a class="dropdown-item template-option" data-template="blakeSnyder" href="#">Blake Snyder Beat Sheet</a></li>
+					<li><a class="dropdown-item template-option" data-template="eightSeq" href="#">8 Sequence Structure</a></li>
+					<li><a class="dropdown-item template-option" data-template="herosJourney" href="#">Hero's Journey</a></li>
+					<li><a class="dropdown-item template-option" data-template="danHarmon" href="#">Dan Harmon Story Circle</a></li>
+				</ul>
+			</div>
+			<button id="toggleTitle" title="Show/hide title page" class="btn btn-outline-light dropdown-toggle" style="user-select:none;" type="button">Title</button>
+			<button id="helpBtn" class="btn btn-outline-light">?</button>
+		</div>
+		<div class="titlebar-center hide" id="titleArea">
+			<input type="text" id="scriptTitle" value="Untitled Script" class="form-control form-control-sm me-2" placeholder="Title" />
+			<input type="text" id="scriptAuthor" value="Your Name" placeholder="Author" class="form-control form-control-sm me-2" />
+			<input type="text" id="scriptContact" value="your@email.com" placeholder="Contact" class="form-control form-control-sm me-2" />
+			<input type="text" id="scriptDate" value="March 28, 2026" placeholder="Draft date" class="form-control form-control-sm me-2" />
+		</div>
+		
+	</div>
+	<div class="container-fluid px-0">
+		<ul class="nav nav-tabs d-md-none" id="screenplayTabs" role="tablist">
+			<li class="nav-item" role="presentation">
+				<button class="nav-link active fw-bold" id="write-tab" data-bs-toggle="tab" data-bs-target="#writePanel" type="button" role="tab" aria-controls="writePanel" aria-selected="true">Write</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link fw-bold" id="preview-tab" data-bs-toggle="tab" data-bs-target="#previewPanel" type="button" role="tab" aria-controls="previewPanel" aria-selected="false">Preview</button>
+			</li>
+		</ul>
+		<div class="row main-cols gx-0">
+			<div class="col-12 col-md-6 tab-pane fade show active " id="writePanel" role="tabpanel" aria-labelledby="write-tab">
+				<div class="main-left">
+					<textarea id="input" placeholder="Start writing your screenplay..."></textarea>
+				</div>
+			</div>
+			<div class="col-12 col-md-6 tab-pane fade d-none d-md-block" id="previewPanel" role="tabpanel" aria-labelledby="preview-tab">
+				<div class="main-right">
+					<div id="preview"></div>
+					<div class="export-buttons">
+						<input type="file" id="openFountain" accept=".fountain,.txt,.md,.screenplay" style="display:none;" />
+						<button id="openFountainBtn" class="btn btn-sm btn-outline-success me-2">Open .fountain</button>
+						<button id="exportFountain" class="btn btn-sm btn-outline-primary me-2">Export .fountain</button>
+						<button id="exportPDF" class="btn btn-sm btn-secondary ">Export PDF</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div id="helpPopup" class="help-popup hidden">
+  
+  <!-- overlay click area -->
+  <div class="help-overlay"></div>
+
+  <div class="help-card">
+
+    <!-- CLOSE ICON -->
+    <div class="help-close" id="closeHelp">✕</div>
+
+    <h4>✍️ How to Use</h4>
+
+    <p><strong>1. Start Writing</strong></p>
+    <p>Just type normally — no formatting needed.</p>
+
+    <hr>
+
+    <p><strong>2. Scene Heading</strong></p>
+    <p>INT. ROOM - DAY</p>
+
+    <p><strong>3. Character</strong></p>
+    <p>JOHN</p>
+
+    <p><strong>4. Dialogue</strong></p>
+    <p>Hello, how are you?</p>
+
+    <p><strong>5. Action</strong></p>
+    <p>John walks into the room.</p>
+
+    <hr>
+
+    <p><strong>Basic Rules</strong></p>
+    <p>• Use CAPS for characters</p>
+    <p>• Start scenes with INT / EXT</p>
+    <p>• Dialogue comes after character</p>
+    <p>• Press Enter to continue writing</p>
+
+    <hr>
+
+    <p><strong>Templates</strong></p>
+    <p>Use “Screenplay Template” to start structure.</p>
+
+    <p style="color:#ffcc00;"><strong>⚠ Important:</strong></p>
+    <p style="color:#ffcc00;">
+      Export your script as <strong>.fountain</strong> before changing template.<br>
+      Template change will overwrite your current script.
+    </p>
+
+    <hr>
+
+    <p><strong>Preview</strong></p>
+    <p>Switch to Preview tab to see formatted script.</p>
+
+    <hr>
+
+    <p><strong>Saving Your Work</strong></p>
+
+    <p style="color:#ff6b6b;"><strong>⚠ No Auto Save:</strong></p>
+    <p style="color:#ff6b6b;">
+      This tool does NOT auto save your script.
+    </p>
+
+    <p>
+      Always export your script as <strong>.fountain</strong> file to save your work.
+    </p>
+
+    <p>
+      To continue later, use <strong>Open .fountain</strong> to reload your script.
+    </p>
+
+    <hr>
+
+    <p style="font-size:12px; opacity:0.7;">
+      Tip: If it looks like a screenplay, you're doing it right.
+    </p>
+
+    <button id="closeHelp">Close</button>
+
+  </div>
+</div>
+	
+	<script src="editor.js"></script>
+</body>
+	<!-- Bootstrap JS for dropdowns -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</html>
